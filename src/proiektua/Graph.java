@@ -7,7 +7,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
-import pasaden_lana.WebZerrenda;
+import pasaden_lana.WebOrriak;
+
 
 public class Graph {
 	
@@ -25,22 +26,35 @@ public class Graph {
 	public Graph(){
 	}
 	
-	public void grafoaSortu(WebZerrenda lista) throws IOException{
+	public void grafoaSortu(WebOrriak lista) throws IOException{
 		// Post: web-en zerrendatik grafoa sortu
 		//Nodoak web-en url-ak dira
 		
         // 1. pausua:  “th” bete
         // KODEA INPLEMENTATU
-		this.th = lista.getMap();
 		
-        // 2. pausua: “keys” bete
-		keys = new String[th.size()];
-		for (String k: th.keySet()) keys[th.get(k)] = k;
-
-		// 3. pausua: “adjList” bete
-        // KODEA INPLEMENTATU     
-		this.adjList=lista.getAdj();
-           
+		this.th=new HashMap<String,Integer>();
+		keys = new String[lista.luzeera()];
+		this.adjList= (ArrayList<Integer>[]) new ArrayList[lista.luzeera()];
+		
+		for (int i = 0;i<lista.luzeera();i++) {
+			
+			//1.pausua th bete
+			this.th.put(lista.getLista().get(i).getUrl(),i);
+			
+			// 2. pausua: “keys” bete
+			this.keys[i]=lista.getLista().get(i).getUrl();
+		}
+		
+		for ( int a = 0;a<lista.luzeera();a++) {
+			
+			for (int z = 0;z<lista.getLista().get(a).getListaOrriak().size();z++) {
+				
+				// 3. pausua: “adjList” bete    
+				this.adjList[a].add(this.th.get(lista.getLista().get(a).getListaOrriak().get(z).getUrl()));
+			}
+		}
+		
 	}
 	
 	
@@ -96,9 +110,40 @@ public class Graph {
 		return aurkitua;
 	}
 	
-	/*
+	
 	//amaitu beharra
 	private ArrayList<String> erlazio(String a1,String a2){
+		Queue<Integer> aztertuGabeak = new LinkedList<Integer>();
+		ArrayList<String> emaitza=new ArrayList<String>();
+
+		int pos1 = th.get(a1);		
+		int pos2 = th.get(a2);
+		boolean aurkitua = false;
+		boolean[] aztertuak = new boolean[th.size()]; 
+													
 		
-	}*/
+		aztertuGabeak.add(pos1);		
+		aztertuak[pos1]=true;
+
+		
+		while(!aztertuGabeak.isEmpty() && !aurkitua) {
+			emaitza = new ArrayList<String>();
+			Integer a = aztertuGabeak.remove();
+			emaitza.add(this.keys[a]);
+			if(a.equals(pos2)) {					
+				aurkitua=true;
+			}
+			else {
+				for(int i = 0;i<adjList[a].size();i++) {	
+					if(aztertuak[adjList[a].get(i)] == false) {	
+						aztertuGabeak.add(adjList[a].get(i));
+						aztertuak[adjList[a].get(i)]=true;
+						emaitza.add(this.keys[adjList[a].get(i)]);
+					}
+				}
+			}
+		}
+		
+		return emaitza;
+	}
 }

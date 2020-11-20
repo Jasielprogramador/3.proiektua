@@ -2,19 +2,18 @@ package proiektua;
 
 import java.io.IOException;
 
-import pasaden_lana.WebZerrenda;
+import pasaden_lana.WebOrriak;
+
 
 public class Main {
 	
 	public static void main(String[] args) throws IOException {
 		
 		Graph grafoa = new Graph();
-		WebZerrenda zerrenda = WebZerrenda.getInstance();
+		WebOrriak zerrenda = WebOrriak.getNireWebOrriak();
 		
-		//Esto igual hay que cambiarlo
-		zerrenda.webOrrienListaKargatu();
+		zerrenda.webOrriakKargatu();
 		zerrenda.webOrrienErlazioakKargatu();
-		
 		
 		grafoa.grafoaSortu(zerrenda);
 		grafoa.print();
