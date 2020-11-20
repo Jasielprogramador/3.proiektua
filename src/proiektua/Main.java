@@ -16,7 +16,7 @@ public class Main {
 		zerrenda.webOrrienErlazioakKargatu();
 		
 		grafoa.grafoaSortu(zerrenda);
-		grafoa.print();
+
 	}
 
 }

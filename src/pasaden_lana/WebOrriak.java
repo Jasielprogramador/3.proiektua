@@ -110,7 +110,7 @@ public class WebOrriak {
 	}
 	
 	public int luzeera() {
-		return this.lista.size()-1;
+		return this.lista.size();
 	}
 	
 	//Te da las paginas web que contiene una palabra
