@@ -41,15 +41,19 @@ public class WebZerrenda {
 	           
 		try{
 			Scanner sarrera=new Scanner(new FileReader("/home/arrosa/git/3.proiektua/src/pasaden_lana/index"));
-			String line = null;
+			String line = "";
+            String[] parts=null;
+            Integer indizea = 0;
+            String url = "";
+			
 	            
 
 			while (sarrera.hasNextLine()){
 	                
 				line = sarrera.nextLine();
-				String[] parts = line.split(" ");
-				Integer indizea = Integer.parseInt( parts[1].trim() );
-				String url = parts[0].trim();
+				parts = line.split(" ");
+				indizea = Integer.parseInt( parts[1].trim() );
+				url = parts[0].trim();
 
 	                
 				if( !url.equals("") && !indizea.equals("") ) {			//aqui miro si no esta vacio y si no lo esta añado la url a la lista y ademas de esto añado la
@@ -83,7 +87,7 @@ public class WebZerrenda {
         	Scanner sarrera=new Scanner(new FileReader("/home/arrosa/git/3.proiektua/src/pasaden_lana/pld-arcs-1-N"));
             String line = "";
             String[] parts=null;
-            int indizea = 0;
+            Integer indizea = 0;
             String[] alde = null;
             
             while ( sarrera.hasNextLine() ){
