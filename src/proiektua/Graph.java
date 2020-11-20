@@ -120,7 +120,7 @@ public class Graph {
 	
 	
 	//amaitu beharra
-	private ArrayList<String> erlazio(String a1,String a2){
+	public ArrayList<String> erlazioBide(String a1,String a2){
 		Queue<Integer> aztertuGabeak = new LinkedList<Integer>();
 		ArrayList<String> emaitza=new ArrayList<String>();
 
