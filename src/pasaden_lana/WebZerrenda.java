@@ -33,7 +33,6 @@ public class WebZerrenda {
 	private WebZerrenda() {
 		this.lista=new ArrayList<String>();
 		this.map=new HashMap<String,Integer>();
-		this.adj=(ArrayList<Integer>[]) new ArrayList[this.luzeera()]; 
 	}
 	
 	public void webOrrienListaKargatu(){
@@ -71,6 +70,8 @@ public class WebZerrenda {
 		{
 			System.out.println("There was an exception handling the file!");
 		}
+		
+		this.adj=(ArrayList<Integer>[]) new ArrayList[this.luzeera()]; 
 	         
 	}
 	
@@ -80,14 +81,17 @@ public class WebZerrenda {
 		  
         try{
         	Scanner sarrera=new Scanner(new FileReader("/home/arrosa/git/3.proiektua/src/pasaden_lana/pld-arcs-1-N"));
-            String line = null;
+            String line = "";
+            String[] parts=null;
+            int indizea = 0;
+            String[] alde = null;
             
             while ( sarrera.hasNextLine() ){
                 
             	line = sarrera.nextLine();
-                String[] parts = line.split("--> ");
-                Integer indizea = Integer.parseInt( parts[0].trim() );
-                String[] alde = parts[1].split(" ");
+                parts = line.split("--> ");
+                indizea = Integer.parseInt( parts[0].trim() );
+                alde = parts[1].split(" ");
                 
                 for(int i = 0;i<alde.length;i++) {
                 	int ind = Integer.parseInt(alde[i]);							//lo que hago aqui es conseguir las url que tienen relacion con nuestra url
@@ -96,8 +100,7 @@ public class WebZerrenda {
                 	emaitza.add(ind);
                 }
                 this.adj[indizea]=emaitza;											//despues de conseguir todos los identificadores de todas las url que se relacionan
-                																	//con la nuestra añado en la posicion del identificador de nuestra url todas
-                																	//las url con las que se relaciona
+                																	//con la nuestra añado en la posicion del identificador de nuestra url todas																//las url con las que se relaciona
             }
             sarrera.close();
         }
