@@ -7,6 +7,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
 
+import pasaden_lana.WebZerrenda;
+
 public class Graph {
 	
 	//URL bakoitzeko, bere identifikatzailea ematen du
@@ -17,40 +19,41 @@ public class Graph {
 	
 	//URL bakoitza zein beste URL ditu
 	private ArrayList<Integer>[] adjList;
+
 	
 	//Eraikitzailea
-	public Graph() {
-		
+	public Graph(){
 	}
 	
 	public void grafoaSortu(WebZerrenda lista) throws IOException{
 		// Post: web-en zerrendatik grafoa sortu
-		//       Nodoak web-en url-ak dira
-			lista.dokumentuaSortu();
-			lista.ListaKargatu();
+		//Nodoak web-en url-ak dira
 		
-            // 1. pausua:  “th” bete
-            // KODEA INPLEMENTATU
-			this.th = lista.getHashMapFromTextFile();
-            // 2. pausua: “keys” bete
+        // 1. pausua:  “th” bete
+        // KODEA INPLEMENTATU
+		this.th = lista.getMap();
+		
+        // 2. pausua: “keys” bete
 		keys = new String[th.size()];
 		for (String k: th.keySet()) keys[th.get(k)] = k;
 
- 	    // 3. pausua: “adjList” bete
-            // KODEA INPLEMENTATU     
-		this.adjList=lista.getEmaitza();
+		// 3. pausua: “adjList” bete
+        // KODEA INPLEMENTATU     
+		this.adjList=lista.getAdj();
            
 	}
 	
 	
 	public void print(){
-		   for (int i = 0; i < adjList.length; i++){
-			System.out.print("Element: " + i + " " + keys[i] + " --> ");
-			for (int k: adjList[i])  System.out.print(keys[k] + " ### ");
+		
+		for (int i = 0; i < adjList.length; i++){
 			
-			System.out.println();
-		   }
-		}
+			System.out.print("Element: " + i + " " + keys[i] + " --> ");
+			
+			for (int k: adjList[i])  System.out.print(keys[k] + " ### ");
+				System.out.println();
+			}
+	}
 	
 	public boolean erlazionatuta(String a1, String a2) {
 		
@@ -59,7 +62,8 @@ public class Graph {
 		int pos1 = th.get(a1);		//Te da la posicion que tiene la url que le has pasado a1,a2
 		int pos2 = th.get(a2);
 		boolean aurkitua = false;
-		boolean[] aztertuak = new boolean[th.size()]; //aztertuak es el boolean que utilizo para ver si ya										//he mirado una url o no
+		boolean[] aztertuak = new boolean[th.size()]; //aztertuak es el boolean que utilizo para ver si ya
+													  //he mirado una url o no
 		
 		aztertuGabeak.add(pos1);		//al principio metemos la primera url en la lista de los que 
 										//no han sido actulizados.
@@ -92,20 +96,9 @@ public class Graph {
 		return aurkitua;
 	}
 	
+	/*
+	//amaitu beharra
 	private ArrayList<String> erlazio(String a1,String a2){
 		
-		ArrayList<String> emaitza= new ArrayList<String>();
-		if(this.erlazionatuta(a1, a2)) {
-			emaitza.add(a1);
-			for (int i = 0;i<adjList[th.get(a1)].size();i++) {			//aqui hago un for que recorre
-																		//el adjList con el identificador de 
-																		//la url
-				this.erlazio(keys[adjList[th.get(a1)].get(i)], a2);		//aqui hago una llamada recursiva 
-																		//que utilizo para guardar en el emaitz 
-																		//todas las url por las que pasamos
-																		//antes de llegar a la nuestra
-			}	
-		}
-		return emaitza;
-	}
+	}*/
 }
