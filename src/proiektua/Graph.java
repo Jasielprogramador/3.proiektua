@@ -121,22 +121,20 @@ public class Graph {
 	
 	
 	//amaitu beharra
-	//amaitu beharra
-	private ArrayList<String> erlazio(String a1,String a2){
+	public ArrayList<String> erlazio(String a1,String a2){
+		
 		Queue<Integer> aztertuGabeak = new LinkedList<Integer>();
-		String[] emaitza=new String[th.size()];
+		ArrayList<String> emaitza=new ArrayList<String>();
 
 		int pos1 = th.get(a1);		
 		int pos2 = th.get(a2);
 		boolean aurkitua = false;
 		boolean[] aztertuak = new boolean[th.size()]; 
-		emaitza[pos1]=a1;
+		emaitza.add(a1);
 													
-		
 		aztertuGabeak.add(pos1);		
 		aztertuak[pos1]=true;
 
-		int j =0;
 		while(!aztertuGabeak.isEmpty() && !aurkitua) {
 			Integer a = aztertuGabeak.remove();
 			if(a.equals(pos2)) {					
@@ -147,7 +145,7 @@ public class Graph {
 					if(aztertuak[adjList[a].get(i)] == false) {	
 						aztertuGabeak.add(adjList[a].get(i));
 						aztertuak[adjList[a].get(i)]=true;
-						emaitza[i]=this.keys[adjList[a].get(i)];
+						emaitza.add(this.keys[adjList[a].get(i)]);
 					}
 				}
 			}

@@ -106,11 +106,6 @@ public class Main {
 		zerrenda.webOrriakKargatu();
 		zerrenda.webOrrienErlazioakKargatu();
 		grafoa.grafoaSortu(zerrenda);
-		
-		//pasaden laneko hasieraketak
-		WebOrriak NireWebOrriak = WebOrriak.getNireWebOrriak();
-		WebOrriak.getNireWebOrriak().webOrriakKargatu();
-		WebOrriak.getNireWebOrriak().webOrrienErlazioakKargatu();
 
 		
 		Gakoak gakoak=new Gakoak();
@@ -136,39 +131,39 @@ public class Main {
 			if(zenbakia==1) {
 				System.out.println("Zein WebOrri lortu nahi duzu?");
 				String text = teklatua.irakurriString();
-				getWebOrria(NireWebOrriak,text);
+				getWebOrria(zerrenda,text);
 				
 			}
 			else if(zenbakia==2) {
 				System.out.println("Zein Web Orri txertatu nahi duzu?"); 
 				String text = teklatua.irakurriString();
-				web = new WebOrria(text,NireWebOrriak.luzeera());
-				webOrriTxertatu(NireWebOrriak,web);
+				web = new WebOrria(text,zerrenda.luzeera());
+				webOrriTxertatu(zerrenda,web);
 			}
 			else if(zenbakia==3) {
 				System.out.println("Zein WebOrri ezabatu nahi duzu?"); 
 				String text = teklatua.irakurriString();
 				
-				web=NireWebOrriak.getWebOrria(text);
-				webOrriKendu(NireWebOrriak,web);
+				web=zerrenda.getWebOrria(text);
+				webOrriKendu(zerrenda,web);
 			}
 			else if(zenbakia==4) {
 				System.out.println("Proba, WebOrria(0-euro-handys.de,22)-rekin egingo dugu "); 
 				web=new WebOrria("0-euro-handys.de", 22);
-				estekak(NireWebOrriak,web);
+				estekak(zerrenda,web);
 			}
 			else if(zenbakia==5) {
 				System.out.println("Proba, abaddon gakoarekin egingo dugu"); 
 				Gakoa gakoa=new Gakoa("abaddon");
-				hitzak(NireWebOrriak,gakoa);
+				hitzak(zerrenda,gakoa);
 			}
 			else if(zenbakia==6) {
-				NireWebOrriak.quickSort(NireWebOrriak.getLista(),0,WebOrriak.getNireWebOrriak().luzeera());
+				zerrenda.quickSort(zerrenda.getLista(),0,WebOrriak.getNireWebOrriak().luzeera());
 				int i = 0;
 			}
 			else if(zenbakia==7) {
 				System.out.println("Proba, url_lista,txt izeneko dokumentu batekin egin dugu"); 
-				idatziDokumentuan(NireWebOrriak);
+				idatziDokumentuan(zerrenda);
 			}
 			else if(zenbakia==8) {
 				
@@ -185,10 +180,15 @@ public class Main {
 				String ulr1=teklatua.irakurriString();
 				System.out.println("Sartu helburu bezala nahi duzun url-a");
 				String url2=teklatua.irakurriString();
-				ArrayList<String> emaitza = grafoa.erlazioBide(ulr1, url2);
+				ArrayList<String> emaitza = grafoa.erlazio(ulr1, url2);
 				
-				for (int i = 0;i<emaitza.size();i++) {
-					System.out.println(i+": "+emaitza.get(i));
+				if(emaitza.size()==1) {
+					System.out.println("Url-ak ez daude erlazionatuta");
+				}
+				else {
+					for (int i = 0;i<emaitza.size();i++) {
+						System.out.println(i+": "+emaitza.get(i));
+					}
 				}
 				
 			}
