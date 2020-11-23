@@ -1,6 +1,7 @@
 package proiektua;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -114,22 +115,21 @@ public class Graph {
 	//amaitu beharra
 	private ArrayList<String> erlazio(String a1,String a2){
 		Queue<Integer> aztertuGabeak = new LinkedList<Integer>();
-		ArrayList<String> emaitza=new ArrayList<String>();
+		String[] emaitza=new String[th.size()];
 
 		int pos1 = th.get(a1);		
 		int pos2 = th.get(a2);
 		boolean aurkitua = false;
 		boolean[] aztertuak = new boolean[th.size()]; 
+		emaitza[pos1]=a1;
 													
 		
 		aztertuGabeak.add(pos1);		
 		aztertuak[pos1]=true;
 
-		
+		int j =0;
 		while(!aztertuGabeak.isEmpty() && !aurkitua) {
-			emaitza = new ArrayList<String>();
 			Integer a = aztertuGabeak.remove();
-			emaitza.add(this.keys[a]);
 			if(a.equals(pos2)) {					
 				aurkitua=true;
 			}
@@ -138,7 +138,7 @@ public class Graph {
 					if(aztertuak[adjList[a].get(i)] == false) {	
 						aztertuGabeak.add(adjList[a].get(i));
 						aztertuak[adjList[a].get(i)]=true;
-						emaitza.add(this.keys[adjList[a].get(i)]);
+						emaitza[i]=this.keys[adjList[a].get(i)];
 					}
 				}
 			}
