@@ -36,7 +36,7 @@ public class Graph {
 		
 		this.th=new HashMap<String,Integer>();
 		keys = new String[lista.luzeera()];
-		this.adjList= (ArrayList<Integer>[]) new ArrayList[lista.luzeera()];
+		this.adjList= new ArrayList[lista.luzeera()];
 		
 		for (int i = 0;i<lista.luzeera();i++) {
 			
@@ -47,13 +47,21 @@ public class Graph {
 			this.keys[i]=lista.getLista().get(i).getUrl();
 		}
 		
+		//hasieratzeko
+		for (int z = 0;z<lista.luzeera();z++) {
+			this.adjList[z]=new ArrayList<Integer>();
+		
+		}
+		
 		for ( int a = 0;a<lista.luzeera();a++) {
 			
-			for (int z = 0;z<lista.getLista().get(a).getListaOrriak().size();z++) {
+			for (int h = 0;h<lista.getLista().get(a).getListaOrriak().size();h++) {
 				
-				// 3. pausua: “adjList” bete    
-				this.adjList[a].add(this.th.get(lista.getLista().get(a).getListaOrriak().get(z).getUrl()));
+				// 3. pausua: “adjList” bete 
+				int arku = this.th.get(lista.getLista().get(a).getListaOrriak().get(h).getUrl());
+				this.adjList[a].add(arku);
 			}
+
 		}
 		
 	}
@@ -112,6 +120,7 @@ public class Graph {
 	}
 	
 	
+	//amaitu beharra
 	//amaitu beharra
 	private ArrayList<String> erlazio(String a1,String a2){
 		Queue<Integer> aztertuGabeak = new LinkedList<Integer>();
