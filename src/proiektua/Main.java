@@ -182,7 +182,7 @@ public class Main {
 				String url2=teklatua.irakurriString();
 				ArrayList<String> emaitza = grafoa.erlazio(ulr1, url2);
 				
-				if(emaitza.size()==1) {
+				if(emaitza.size()<=1) {
 					System.out.println("Url-ak ez daude erlazionatuta");
 				}
 				else {

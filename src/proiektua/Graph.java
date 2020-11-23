@@ -125,30 +125,35 @@ public class Graph {
 		
 		Queue<Integer> aztertuGabeak = new LinkedList<Integer>();
 		ArrayList<String> emaitza=new ArrayList<String>();
+		
+		if(this.erlazionatuta(a1, a2)) {
 
-		int pos1 = th.get(a1);		
-		int pos2 = th.get(a2);
-		boolean aurkitua = false;
-		boolean[] aztertuak = new boolean[th.size()]; 
-		emaitza.add(a1);
-													
-		aztertuGabeak.add(pos1);		
-		aztertuak[pos1]=true;
-
-		while(!aztertuGabeak.isEmpty() && !aurkitua) {
-			Integer a = aztertuGabeak.remove();
-			if(a.equals(pos2)) {					
-				aurkitua=true;
-			}
-			else {
-				for(int i = 0;i<adjList[a].size();i++) {	
-					if(aztertuak[adjList[a].get(i)] == false) {	
-						aztertuGabeak.add(adjList[a].get(i));
-						aztertuak[adjList[a].get(i)]=true;
-						emaitza.add(this.keys[adjList[a].get(i)]);
+			int pos1 = th.get(a1);		
+			int pos2 = th.get(a2);
+			boolean aurkitua = false;
+			boolean[] aztertuak = new boolean[th.size()]; 
+			emaitza.add(a1);
+														
+			aztertuGabeak.add(pos1);		
+			aztertuak[pos1]=true;
+	
+			while(!aztertuGabeak.isEmpty() && !aurkitua) {
+				Integer a = aztertuGabeak.remove();
+				emaitza.add(this.keys[a]);
+				
+				if(a.equals(pos2)) {					
+					aurkitua=true;
+				}
+				else {
+					for(int i = 0;i<adjList[a].size();i++) {	
+						if(aztertuak[adjList[a].get(i)] == false) {	
+							aztertuGabeak.add(adjList[a].get(i));
+							aztertuak[adjList[a].get(i)]=true;
+						}
 					}
 				}
 			}
+			
 		}
 		
 		return emaitza;
