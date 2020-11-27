@@ -36,8 +36,4 @@ public class Gakoa {
 		WebOrriak.getNireWebOrriak().gakoaWebOrriak(this.izena);
 	}
 	
-	
-	
-	
-	
 }

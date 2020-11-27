@@ -1,4 +1,4 @@
-package proiektua;
+package lana;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -70,9 +70,9 @@ public class Main {
 	}
 	
 	
-	/*public void ordenatu(WebOrriak webLista) {
+	public void ordenatu(WebOrriak webLista) {
 		//ORDENAR EL DOCUMENTO
-		webLista.webOrdenatua();
+		//webLista.webOrde
 		ArrayList<String> o=webLista.getUrlLista();
 				
 		for(int i=0;i<o.size();i++) {
@@ -80,7 +80,7 @@ public class Main {
 			System.out.println(webLista.getUrlLista().get(i));
 					
 		}
-	}*/
+	}
 	
 	
 	public static void idatziDokumentuan(WebOrriak webLista) {
@@ -105,7 +105,6 @@ public class Main {
 		boolean irten = false;
 		zerrenda.webOrriakKargatu();
 		zerrenda.webOrrienErlazioakKargatu();
-		grafoa.grafoaSortu(zerrenda);
 
 		
 		Gakoak gakoak=new Gakoak();
@@ -121,9 +120,10 @@ public class Main {
 			System.out.println("5.Gako-hitz hau duten web-orrien zerranda bueltatu ");
 			System.out.println("6.WebOrrien lista ordenatu");
 			System.out.println("7.WebOrrien zerrenda dokumentu batean idatzi");
-			System.out.println("8.Grafoa sortu");
-			System.out.println("9.Graph klasearen erlazionatuta metodoa"); 
-			System.out.println("10.Graph klasearen erlazioBide metodoa");
+			System.out.println("8.Grafoa kargatu");
+			System.out.println("9.Grafoa inprimatu");
+			System.out.println("10.Graph klasearen erlazionatuta metodoa"); 
+			System.out.println("11.Graph klasearen erlazioBide metodoa");
 			
 			int zenbakia=teklatua.irakurriZenb();
 			WebOrria web=null;
@@ -165,22 +165,26 @@ public class Main {
 				System.out.println("Proba, url_lista,txt izeneko dokumentu batekin egin dugu"); 
 				idatziDokumentuan(zerrenda);
 			}
-			else if(zenbakia==8) {
-				
+			else if(zenbakia == 8) {
+				grafoa.grafoaSortu(zerrenda);
+				System.out.println("Grafoa kargatu egin da");
 			}
 			else if(zenbakia==9) {
-				System.out.println("Sartu root bezala hartu nahi duzun url");
-				String ulr1=teklatua.irakurriString();
-				System.out.println("Sartu helburu bezala nahi duzun url-a");
-				String url2=teklatua.irakurriString();
-				System.out.println("EMAITZA "+grafoa.erlazionatuta(ulr1, url2));
+				grafoa.print();
 			}
 			else if(zenbakia==10) {
 				System.out.println("Sartu root bezala hartu nahi duzun url");
 				String ulr1=teklatua.irakurriString();
 				System.out.println("Sartu helburu bezala nahi duzun url-a");
 				String url2=teklatua.irakurriString();
-				ArrayList<String> emaitza = grafoa.erlazio(ulr1, url2);
+				System.out.println("EMAITZA "+grafoa.erlazionatuta(ulr1, url2));
+			}
+			else if(zenbakia==11) {
+				System.out.println("Sartu root bezala hartu nahi duzun url");
+				String ulr1=teklatua.irakurriString();
+				System.out.println("Sartu helburu bezala nahi duzun url-a");
+				String url2=teklatua.irakurriString();
+				ArrayList<String> emaitza = grafoa.erlazioBide(ulr1, url2);
 				
 				if(emaitza.size()<=1) {
 					System.out.println("Url-ak ez daude erlazionatuta");

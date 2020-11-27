@@ -1,4 +1,4 @@
-package proiektua;
+package lana;
 
 import java.io.IOException;
 import java.lang.reflect.Array;
@@ -28,40 +28,46 @@ public class Graph {
 	}
 	
 	public void grafoaSortu(WebOrriak lista) throws IOException{
-		// Post: web-en zerrendatik grafoa sortu
-		//Nodoak web-en url-ak dira
 		
-        // 1. pausua:  “th” bete
-        // KODEA INPLEMENTATU
-		
-		this.th=new HashMap<String,Integer>();
-		keys = new String[lista.luzeera()];
-		this.adjList= new ArrayList[lista.luzeera()];
-		
-		for (int i = 0;i<lista.luzeera();i++) {
+		if(!lista.equals(null)) {
+			// Post: web-en zerrendatik grafoa sortu
+			//Nodoak web-en url-ak dira
 			
-			//1.pausua th bete
-			this.th.put(lista.getLista().get(i).getUrl(),i);
+	        // 1. pausua:  “th” bete
+	        // KODEA INPLEMENTATU
 			
-			// 2. pausua: “keys” bete
-			this.keys[i]=lista.getLista().get(i).getUrl();
-		}
-		
-		//hasieratzeko
-		for (int z = 0;z<lista.luzeera();z++) {
-			this.adjList[z]=new ArrayList<Integer>();
-		
-		}
-		
-		for ( int a = 0;a<lista.luzeera();a++) {
+			this.th=new HashMap<String,Integer>();
+			keys = new String[lista.luzeera()];
+			this.adjList= new ArrayList[lista.luzeera()];
 			
-			for (int h = 0;h<lista.getLista().get(a).getListaOrriak().size();h++) {
+			for (int i = 0;i<lista.luzeera();i++) {
 				
-				// 3. pausua: “adjList” bete 
-				int arku = this.th.get(lista.getLista().get(a).getListaOrriak().get(h).getUrl());
-				this.adjList[a].add(arku);
+				//1.pausua th bete
+				this.th.put(lista.getLista().get(i).getUrl(),i);
+				
+				// 2. pausua: “keys” bete
+				this.keys[i]=lista.getLista().get(i).getUrl();
 			}
-
+			
+			//hasieratzeko
+			for (int z = 0;z<lista.luzeera();z++) {
+				this.adjList[z]=new ArrayList<Integer>();
+			
+			}
+			
+			for ( int a = 0;a<lista.luzeera();a++) {
+				
+				for (int h = 0;h<lista.getLista().get(a).getListaOrriak().size();h++) {
+					
+					// 3. pausua: “adjList” bete 
+					int arku = this.th.get(lista.getLista().get(a).getListaOrriak().get(h).getUrl());
+					this.adjList[a].add(arku);
+				}
+	
+			}
+		}
+		else {
+			System.out.println("WebOrrien zerrenda hutsa");
 		}
 		
 	}
@@ -120,8 +126,8 @@ public class Graph {
 	}
 	
 	
-	//amaitu beharra
-	public ArrayList<String> erlazio(String a1,String a2){
+
+	public ArrayList<String> erlazioBide(String a1,String a2){
 		
 		Queue<Integer> aztertuGabeak = new LinkedList<Integer>();
 		ArrayList<String> emaitza=new ArrayList<String>();
